@@ -9,7 +9,7 @@ const BabyHealth = () => {
   return (
     <section className="py-12 bg-gray-700 text-grey-400 p-5">
       <div className="container mx-auto flex flex-col items-center">
-        <animated.h2 className="text-4xl font-bold mb-8" style={fadeIn}>
+        <animated.h2 className="text-2xl font-bold mb-8" style={fadeIn}>
           Raising Child Awareness
         </animated.h2>
 

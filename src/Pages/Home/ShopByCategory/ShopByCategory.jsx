@@ -4,7 +4,7 @@ const ShopByCategorySection = () => {
   return (
     <section className="py-8 lg:py-12 bg-gray-700">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-semibold text-gray-300 mb-6 text-center">
+        <h2 className="text-2xl font-semibold text-gray-300 mb-6 text-center">
           Shop by Category
         </h2>
 

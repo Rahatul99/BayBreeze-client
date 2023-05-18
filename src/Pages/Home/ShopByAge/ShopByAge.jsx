@@ -9,7 +9,7 @@ const ShopByAge = () => {
   return (
     <section className=" bg-gray-800 text-white p-10">
       <div className="container mx-auto">
-        <h2 className="text-4xl font-bold mb-8 text-center">Shop by Age</h2>
+        <h2 className="text-2xl font-bold mb-8 text-center text-gray-400">Shop by Age</h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           {ageRanges.map((range, index) => (

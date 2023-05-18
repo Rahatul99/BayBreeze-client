@@ -1,6 +1,33 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Providers/AuthProvider';
 
 const SignUp = () => {
+
+  const { createUser, updateUser } = useContext(AuthContext);
+
+  const handleSignUp = event => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    const photoURL = form.photoURL.value;
+
+    createUser(email, password)
+    .then(result => {
+      const user = result.user;
+      console.log('created user', user)
+      })
+      .catch(error => console.log(error))
+    
+    updateUser(name, photoURL)
+    .then(result => {
+      const user = result.user;
+      console.log('updated user', user)
+      })
+      .catch(error => console.log(error)) 
+  }
   return (
     <div className="hero min-h-screen" style={{ backgroundImage: `url("https://images.unsplash.com/photo-1464589578935-4a23731e7292?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80")`}}>
       <div className="hero-overlay bg-opacity-60"></div>
@@ -8,7 +35,7 @@ const SignUp = () => {
         <div className="card flex-shrink-0 w-[40%] shadow-2xl glass">
           <div className="card-body">
             <h1 className="text-3xl text-center font-bold">Registration</h1>
-            <form onSubmit={() => {}}>
+            <form onSubmit={handleSignUp}>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Name</span>

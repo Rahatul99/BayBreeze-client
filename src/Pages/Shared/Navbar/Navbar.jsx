@@ -23,7 +23,7 @@ return (
                             <Link to="/myToys">My Toys</Link>
                         </li>
                         <li className={location.pathname === '/addedToy' ? 'active' : ''}>
-                            <Link to="/addedToy">Add A Toy</Link>
+                            <Link to="/addatoy">Add A Toy</Link>
                         </li>
                         <li className={location.pathname === '/blogs' ? 'active' : ''}>
                             <Link to="/blogs">Blogs</Link>
@@ -50,7 +50,7 @@ return (
                         <Link to="/myToys">My Toys</Link>
                     </li>
                     <li className={location.pathname === '/addedToy' ? 'active' : ''}>
-                        <Link to="/addedToy">Add A Toy</Link>
+                        <Link to="/addatoy">Add A Toy</Link>
                     </li>
                     <li className={location.pathname === '/blogs' ? 'active' : ''}>
                         <Link to="/blogs">Blogs</Link>

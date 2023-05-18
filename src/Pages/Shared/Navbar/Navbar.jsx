@@ -1,9 +1,19 @@
 import { Link, useLocation } from "react-router-dom";
 import Logo from '../../../assets/Logo.svg'
+import { useContext } from "react";
+import { AuthContext } from "../../../Providers/AuthProvider";
 
 const Navbar = () => {
     const location = useLocation();
-
+    const { user, logOut } = useContext(AuthContext);
+    console.log(user);
+    const handleLogOut = () => {
+        logOut()
+        .then()
+        .catch(error => {
+        console.log(error);
+        })
+    }
 return (
     <>
         <div className="navbar bg-gray-800 text-white">
@@ -57,14 +67,14 @@ return (
                     </li>
                 </ul>
             </div>
-            {/* <div className="navbar-end">
+            <div className="navbar-end">
                 <div className="dropdown dropdown-end">
                     {
                         user ?
                             <div className="dropdown dropdown-end">
                                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                                     <div className="w-10 rounded-full">
-                                        <img src={} title={user?.displayName} />
+                                        <img src={user?.photoURL} title={user?.displayName} />
                                     </div>
                                 </label>
                                 <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
@@ -74,16 +84,14 @@ return (
                                             <span className="badge">New</span>
                                         </a>
                                     </li>
-                                    <li><a>Settings</a></li>
-                                    <li onClick={}><a>Logout</a></li>
+                                    <li onClick={handleLogOut}><a>Logout</a></li>
                                 </ul>
                             </div>
-
                             :
                             <Link to="/login" className="btn sm:btn-sm md:btn-md">Login</Link>
                     }
                 </div>
-            </div> */}
+            </div>
         </div>
     </>
 );

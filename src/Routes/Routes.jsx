@@ -7,6 +7,7 @@ import AllToys from "../Pages/allToys/AllToys";
 import AddToy from "../Pages/AddToy/AddToy";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
+import ViewDetails from "../Pages/Home/ViewDetails/ViewDetails";
 
 const router = createBrowserRouter([
     {
@@ -37,7 +38,12 @@ const router = createBrowserRouter([
             {
                 path: 'signup',
                 element: <SignUp />
-            }
+            },
+            {
+                path: 'viewdetails/:id',
+                element: <ViewDetails />,
+                loader: ({params}) => fetch(`toysData.json/${params.id}`)
+            },
         ]
     },
 ]);

@@ -1,3 +1,7 @@
+import { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 const ShopByAge = () => {
   const ageRanges = [
     { age: '0-2 years', imageSrc: 'https://images.unsplash.com/photo-1477239439998-839196943351?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=780&q=80' },
@@ -6,6 +10,18 @@ const ShopByAge = () => {
     { age: '8-10 years', imageSrc: 'https://images.unsplash.com/photo-1498674202614-ac0172c6c61a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80' },
   ];
 
+  useEffect(() => {
+    AOS.init({
+      offset: 200,
+      delay: 50,
+      duration: 1000,
+      easing: 'ease-in-out',
+      mirror: true,
+      once: false,
+      placement: 'top-center',
+    });
+  }, []);
+
   return (
     <section className=" bg-gray-800 text-white p-10">
       <div className="container mx-auto">
@@ -13,7 +29,7 @@ const ShopByAge = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           {ageRanges.map((range, index) => (
-            <div key={index} className="rounded-lg overflow-hidden shadow-lg">
+            <div key={index} className="rounded-lg overflow-hidden shadow-lg" data-aos="fade-up">
               <img src={range.imageSrc} alt={`Age Range: ${range.age}`} className="w-full h-64 object-cover" />
               <div className="p-4 bg-grey-500">
                 <h3 className="text-lg font-semibold mb-2">{range.age}</h3>
@@ -30,3 +46,4 @@ const ShopByAge = () => {
 };
 
 export default ShopByAge;
+

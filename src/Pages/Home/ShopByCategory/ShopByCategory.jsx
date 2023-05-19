@@ -4,12 +4,26 @@ import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import { FaRegStar, FaStar } from "react-icons/fa";
 import { AuthContext } from '../../../Providers/AuthProvider';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const ShopByCategorySection = () => {
   const [toysData, setToysData] = useState();
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    AOS.init({
+      offset: 200,
+      delay: 50,
+      duration: 1000,
+      easing: 'ease-in-out',
+      mirror: true,
+      once: false,
+      placement: 'top-center',
+    });
+  }, []);
 
   useEffect(() => {
     fetch('toysData.json')
@@ -21,12 +35,22 @@ const ShopByCategorySection = () => {
 
   const handleViewDetails = (toyId) => {
     if (!user) {
-      alert("You have to log in first to view details");
-      navigate('/login');
+      Swal.fire({
+        title: 'Please log in first to view details',
+        showClass: {
+          popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOutUp'
+        }
+      }).then(() => {
+        // Redirect to login page
+        navigate('/login');
+      });
     } else {
       // Redirect to toy details page
       // Implement the logic for navigating to the details page
-      navigate(`/toys/${toyId}`);
+      navigate(`/viewdetails/${toyId}`);
     }
   };
 
@@ -35,7 +59,7 @@ const ShopByCategorySection = () => {
   }
 
   return (
-    <section className="py-8 lg:py-12 bg-gray-700">
+    <section className="py-8 lg:py-12 bg-gray-700" data-aos="fade-up">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-2xl font-semibold text-gray-300 mb-6 text-center">
           Shop by Category
@@ -52,7 +76,6 @@ const ShopByCategorySection = () => {
               </Tab>
             ))}
           </TabList>
-
           {toysData.categories.map((category) => (
             <TabPanel key={category.name}>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
@@ -60,6 +83,16 @@ const ShopByCategorySection = () => {
                   tab.toys.map((toy) => (
                     <div
                       key={toy.id}
+
+                      data-aos="zoom-in"
+                      data-aos-offset="200"
+                      data-aos-delay="50"
+                      data-aos-duration="1000"
+                      data-aos-easing="ease-in-out"
+                      data-aos-mirror="true"
+                      data-aos-once="false"
+                      data-aos-placement="top-center"
+
                       className="bg-grey-400 rounded-lg shadow-md p-4"
                     >
                       <img
@@ -79,24 +112,6 @@ const ShopByCategorySection = () => {
                           fullSymbol={<FaStar />}
                         />
                       </div>
-                      {/* <button
-                        className="btn-success text-white px-4 py-2 rounded-md"
-                      onClick={() => {
-                        if (!user) {
-                          // Handle notification and redirection to login page
-                          alert("You have to log in first to view details");
-                          // Redirect to login page using React Router or any other method
-                          // window.location.href = "/login";
-                          <Link to="/login" />
-                        } else {
-                         
-                          // Redirect to toy details page
-                          // Implement the logic for navigating to the details page
-                        }
-                      }}
-                      >
-                        View Details
-                      </button> */}
                       <button
                         className="btn-success text-white px-4 py-2 rounded-md"
                         onClick={() => handleViewDetails(toy.id)}

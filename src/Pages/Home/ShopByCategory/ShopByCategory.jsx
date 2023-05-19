@@ -1,6 +1,39 @@
+import { useContext, useEffect, useState } from 'react';
+import Rating from 'react-rating';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
+import { FaRegStar, FaStar } from "react-icons/fa";
+import { AuthContext } from '../../../Providers/AuthProvider';
+import { useNavigate } from 'react-router-dom';
 
 const ShopByCategorySection = () => {
+  const [toysData, setToysData] = useState();
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+
+  useEffect(() => {
+    fetch('toysData.json')
+      .then(response => response.json())
+      .then(data => setToysData(data))
+      .catch(error => console.error(error));
+  }, []);
+
+
+  const handleViewDetails = (toyId) => {
+    if (!user) {
+      alert("You have to log in first to view details");
+      navigate('/login');
+    } else {
+      // Redirect to toy details page
+      // Implement the logic for navigating to the details page
+      navigate(`/toys/${toyId}`);
+    }
+  };
+
+  if (!toysData) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <section className="py-8 lg:py-12 bg-gray-700">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -9,89 +42,73 @@ const ShopByCategorySection = () => {
         </h2>
 
         <Tabs>
-          <TabList className="flex justify-center mb-6">
-            <Tab className="py-2 px-4 bg-gray-800 text-gray-200 rounded-md mr-4 cursor-pointer">
-              Category 1
-            </Tab>
-            <Tab className="py-2 px-4 bg-gray-800 text-gray-200 rounded-md mr-4 cursor-pointer">
-              Category 2
-            </Tab>
-            <Tab className="py-2 px-4 bg-gray-800 text-gray-200 rounded-md cursor-pointer">
-              Category 3
-            </Tab>
+          <TabList className="md:flex justify-center mb-6">
+            {toysData.categories.map((category) => (
+              <Tab
+                key={category.name}
+                className="py-2 px-4 bg-gray-800 text-gray-200 rounded-md mr-4 cursor-pointer"
+              >
+                {category.name}
+              </Tab>
+            ))}
           </TabList>
 
-          <TabPanel>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-              {/* Toys for Category 1 */}
-              <div className="bg-grey-400 rounded-lg shadow-md p-4">
-                <img
-                  src="/path/to/image-1.jpg"
-                  alt="Toy 1"
-                  className="w-full h-40 object-cover rounded-md mb-2"
-                />
-                <h3 className="text-xl font-semibold mb-2">Toy 1</h3>
-                <p className="text-gray-600 mb-2">$19.99</p>
-                <div className="flex items-center mb-2">
-                  <span className="text-yellow-500">⭐️⭐️⭐️⭐️</span>
-                  <span className="ml-2 text-gray-600">(50)</span>
-                </div>
-                <button className="btn-success text-white px-4 py-2 rounded-md">
-                  View Details
-                </button>
+          {toysData.categories.map((category) => (
+            <TabPanel key={category.name}>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+                {category.tabs.map((tab) => (
+                  tab.toys.map((toy) => (
+                    <div
+                      key={toy.id}
+                      className="bg-grey-400 rounded-lg shadow-md p-4"
+                    >
+                      <img
+                        src={toy.picture}
+                        alt={toy.name}
+                        className="w-full h-40 object-cover rounded-md mb-2"
+                      />
+                      <h3 className="text-xl text-gray-200 font-semibold mb-2">{toy.name}</h3>
+                      <p className="text-gray-200 mb-2">{toy.price}</p>
+                      <div className="flex items-center mb-2 ">
+                        <span className="pr-2 text-gray-200">{toy.rating}</span>
+                        <Rating
+                          placeholderRating={toy.rating}
+                          emptySymbol={<FaRegStar />}
+                          readonly
+                          placeholderSymbol={<FaStar />}
+                          fullSymbol={<FaStar />}
+                        />
+                      </div>
+                      {/* <button
+                        className="btn-success text-white px-4 py-2 rounded-md"
+                      onClick={() => {
+                        if (!user) {
+                          // Handle notification and redirection to login page
+                          alert("You have to log in first to view details");
+                          // Redirect to login page using React Router or any other method
+                          // window.location.href = "/login";
+                          <Link to="/login" />
+                        } else {
+                         
+                          // Redirect to toy details page
+                          // Implement the logic for navigating to the details page
+                        }
+                      }}
+                      >
+                        View Details
+                      </button> */}
+                      <button
+                        className="btn-success text-white px-4 py-2 rounded-md"
+                        onClick={() => handleViewDetails(toy.id)}
+                      >
+                        View Details
+                      </button>
+                    </div>
+                  ))
+                ))}
               </div>
-              
-              {/* Add more toys */}
-            </div>
-          </TabPanel>
-
-          <TabPanel>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-              {/* Toys for Category 2 */}
-              <div className="bg-grey-400 rounded-lg shadow-md p-4">
-                <img
-                  src="/path/to/image-2.jpg"
-                  alt="Toy 2"
-                  className="w-full h-40 object-cover rounded-md mb-2"
-                />
-                <h3 className="text-xl font-semibold mb-2">Toy 2</h3>
-                <p className="text-gray-600 mb-2">$24.99</p>
-                <div className="flex items-center mb-2">
-                  <span className="text-yellow-500">⭐️⭐️⭐️⭐️⭐️</span>
-                  <span className="ml-2 text-gray-600">(100)</span>
-                </div>
-                <button className="btn-success text-white px-4 py-2 rounded-md">
-                  View Details
-                </button>
-              </div>
-              
-              {/* Add more toys */}
-            </div>
-          </TabPanel>
-
-          <TabPanel>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-              {/* Toys for Category 3 */}
-              <div className="bg-grey-400 rounded-lg shadow-md p-4">
-                <img
-                  src="/path/to/image-3.jpg"
-                  alt="Toy 3"
-                  className="w-full h-40 object-cover rounded-md mb-2"
-                />
-                <h3 className="text-xl font-semibold mb-2">Toy 3</h3>
-                <p className="text-gray-600 mb-2">$14.99</p>
-                <div className="flex items-center mb-2">
-                  <span className="text-yellow-500">⭐️⭐️⭐️</span>
-                  <span className="ml-2 text-gray-600">(30)</span>
-                </div>
-                <button className="btn-success text-white px-4 py-2 rounded-md">
-                  View Details
-                </button>
-              </div>
-              
-              {/* Add more toys */}
-            </div>
-          </TabPanel>
+            </TabPanel>
+          ))}
         </Tabs>
       </div>
     </section>
@@ -99,4 +116,3 @@ const ShopByCategorySection = () => {
 };
 
 export default ShopByCategorySection;
-

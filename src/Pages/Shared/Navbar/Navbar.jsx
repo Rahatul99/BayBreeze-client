@@ -41,7 +41,7 @@ return (
                     </ul>
                 </div>
                 <div className="flex items-center">
-                    <Link to="/" className="btn btn-ghost">
+                    <Link to="/" className="btn-ghost">
                         <img src={Logo} className="w-12 mr-2" alt="Logo" />
                     </Link>
                     <a className="btn btn-ghost upper-case md:font-bold md:text-2xl brandName">BayBreeze Playthings</a>

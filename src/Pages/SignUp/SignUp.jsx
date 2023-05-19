@@ -1,9 +1,9 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
 
 const SignUp = () => {
-
+  const [error, setError] = useState('');
   const { createUser, updateUser } = useContext(AuthContext);
 
   const handleSignUp = event => {
@@ -14,19 +14,26 @@ const SignUp = () => {
     const password = form.password.value;
     const photoURL = form.photoURL.value;
 
+    setError('');
+    if (password.length < 6) {
+        setError('Password should be at least 6 characters long.');
+        return;
+    }
     createUser(email, password)
     .then(result => {
       const user = result.user;
-      console.log('created user', user)
-      })
-      .catch(error => console.log(error))
-    
-    updateUser(name, photoURL)
+      console.log('created user', user);
+
+      return updateUser(name, photoURL);
+    })
     .then(result => {
-      const user = result.user;
-      console.log('updated user', user)
-      })
-      .catch(error => console.log(error)) 
+      const updatedUser = result.user;
+      console.log('updated user', updatedUser);
+    })
+    .catch(error => {
+      setError('Failed to create/update user. Please check your input and try again.');
+      console.error(error);
+    });
   }
   return (
     <div className="hero min-h-screen" style={{ backgroundImage: `url("https://images.unsplash.com/photo-1464589578935-4a23731e7292?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80")`}}>
@@ -80,6 +87,7 @@ const SignUp = () => {
                   className="input input-bordered"
                 />
               </div>
+              <p className='text-red-400'>{error}</p>
               <div className="form-control mt-6">
                 <input className="btn btn-block" type="submit" value="Register" />
               </div>

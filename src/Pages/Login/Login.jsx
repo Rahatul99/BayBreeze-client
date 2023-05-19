@@ -1,8 +1,9 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { FaGoogle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
 const Login = () => {
+    const [error, setError] = useState('');
     const { signIn, googleLogin } = useContext(AuthContext);
 
     const handleLogin = event => {
@@ -17,7 +18,13 @@ const Login = () => {
             const user = result.user;
             console.log(user);
         })
-        .catch(error => console.log(error));
+        .catch(error => {
+            if (error.code === 'auth/user-not-found') {
+                setError('Invalid email. Please sign up and try again.');
+            } else {
+                setError('Login failed. Please check your email and password.');
+            }
+        });
     }
 
     const handleGoogleLogIn = () => {
@@ -25,7 +32,7 @@ const Login = () => {
         .then(result => {
             console.log(result.user);
         })
-        .catch(error => console.log(error))
+        .catch(error => setError(error))
     }
     return (
         <div className="hero min-h-screen" style={{ backgroundImage: `url("https://images.unsplash.com/photo-1464589578935-4a23731e7292?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80")` }}>
@@ -62,6 +69,7 @@ const Login = () => {
                                     </a>
                                 </label>
                             </div>
+                            <p className='text-red-400'>{error}</p>
                             <div className="form-control mt-6">
                                 <input className="btn btn-block" type="submit" value="Login" />
                             </div>

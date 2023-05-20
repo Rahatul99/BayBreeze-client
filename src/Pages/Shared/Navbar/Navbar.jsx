@@ -53,11 +53,11 @@ const Navbar = () => {
                         <li className={location.pathname === '/' ? 'active' : ''}>
                             <Link to="/">Home</Link>
                         </li>
+                        <li className={location.pathname === '/allToys' ? 'active' : ''}>
+                            <Link to="/allToys">All Toys</Link>
+                        </li>
                         {user ?
                             <>
-                                <li className={location.pathname === '/allToys' ? 'active' : ''}>
-                                    <Link to="/allToys">All Toys</Link>
-                                </li>
                                 <li className={location.pathname === '/myToys' ? 'active' : ''}>
                                     <Link to="/myToys">My Toys</Link>
                                 </li>

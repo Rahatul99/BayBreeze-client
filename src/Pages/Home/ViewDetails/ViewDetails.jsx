@@ -1,21 +1,18 @@
 import { useLoaderData } from "react-router-dom";
 
 const ViewDetails = () => {
-  const details = useLoaderData();
-
-  if (!details) {
-    return <progress className="progress w-56"></progress>;
-  }
+  const {name, price, rating, picture,description, available_quantity,seller} = useLoaderData();
   return (
     <div>
-      {/* {details.map((detail) => (
-        <div key={detail.id}>
-          <h2>{detail.name}</h2>
-          <p>Price: {detail.price}</p>
-          <p>Rating: {detail.rating}</p>
-          <img src={detail.picture} alt={detail.name} />
+        <div>
+          <h2>{name}</h2>
+          <h1>{description}</h1>
+          <h1>{available_quantity}</h1>
+          <h1>{seller}</h1>
+          <p>Price: {price}</p>
+          <p>Rating: {rating}</p>
+          <img src={picture} alt={name} />
         </div>
-      ))} */}
       <h1>hello</h1>
     </div>
   );

@@ -9,7 +9,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 const ShopByCategorySection = () => {
-  const [toysData, setToysData] = useState();
+  const [toysData, setToysData] = useState(null);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -26,14 +26,13 @@ const ShopByCategorySection = () => {
   }, []);
 
   useEffect(() => {
-    fetch('toysData.json')
+    fetch('http://localhost:5000/categories')
       .then(response => response.json())
       .then(data => setToysData(data))
       .catch(error => console.error(error));
   }, []);
 
-
-  const handleViewDetails = (toyId) => {
+  const handleViewDetails = (category, toy) => {
     if (!user) {
       Swal.fire({
         title: 'Please log in first to view details',
@@ -44,13 +43,10 @@ const ShopByCategorySection = () => {
           popup: 'animate__animated animate__fadeOutUp'
         }
       }).then(() => {
-        // Redirect to login page
         navigate('/login');
       });
     } else {
-      // Redirect to toy details page
-      // Implement the logic for navigating to the details page
-      navigate(`/viewdetails/${toyId}`);
+      navigate(`/viewdetails/${category}/${toy}`);
     }
   };
 
@@ -67,7 +63,7 @@ const ShopByCategorySection = () => {
 
         <Tabs>
           <TabList className="md:flex justify-center mb-6">
-            {toysData.categories.map((category) => (
+            {toysData.map((category) => (
               <Tab
                 key={category.name}
                 className="py-2 px-4 bg-gray-800 text-gray-200 rounded-md mr-4 cursor-pointer"
@@ -76,50 +72,46 @@ const ShopByCategorySection = () => {
               </Tab>
             ))}
           </TabList>
-          {toysData.categories.map((category) => (
+          {toysData?.map((category) => (
             <TabPanel key={category.name}>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-                {category.tabs.map((tab) => (
-                  tab.toys.map((toy) => (
-                    <div
-                      key={toy.id}
-
-                      data-aos="zoom-in"
-                      data-aos-offset="200"
-                      data-aos-delay="50"
-                      data-aos-duration="1000"
-                      data-aos-easing="ease-in-out"
-                      data-aos-mirror="true"
-                      data-aos-once="false"
-                      data-aos-placement="top-center"
-
-                      className="bg-grey-400 rounded-lg shadow-md p-4"
-                    >
-                      <img
-                        src={toy.picture}
-                        alt={toy.name}
-                        className="w-full h-40 object-cover rounded-md mb-2"
+                {category?.toys?.map((toy) => (
+                  <div
+                    key={toy.name}
+                    data-aos="zoom-in"
+                    data-aos-offset="200"
+                    data-aos-delay="50"
+                    data-aos-duration="1000"
+                    data-aos-easing="ease-in-out"
+                    data-aos-mirror="true"
+                    data-aos-once="false"
+                    data-aos-placement="top-center"
+                    className="bg-grey-400 rounded-lg shadow-md p-4"
+                  >
+                    <img
+                      src={toy.picture}
+                      alt={toy.name}
+                      className="w-full h-40 object-cover rounded-md mb-2"
+                    />
+                    <h3 className="text-xl text-gray-200 font-semibold mb-2">{toy.name}</h3>
+                    <p className="text-gray-200 mb-2">{toy.price}</p>
+                    <div className="flex items-center mb-2">
+                      <span className="pr-2 text-gray-200">{toy.rating}</span>
+                      <Rating
+                        placeholderRating={toy.rating}
+                        emptySymbol={<FaRegStar />}
+                        readonly
+                        placeholderSymbol={<FaStar />}
+                        fullSymbol={<FaStar />}
                       />
-                      <h3 className="text-xl text-gray-200 font-semibold mb-2">{toy.name}</h3>
-                      <p className="text-gray-200 mb-2">{toy.price}</p>
-                      <div className="flex items-center mb-2 ">
-                        <span className="pr-2 text-gray-200">{toy.rating}</span>
-                        <Rating
-                          placeholderRating={toy.rating}
-                          emptySymbol={<FaRegStar />}
-                          readonly
-                          placeholderSymbol={<FaStar />}
-                          fullSymbol={<FaStar />}
-                        />
-                      </div>
-                      <button
-                        className="btn-success text-white px-4 py-2 rounded-md"
-                        onClick={() => handleViewDetails(toy.id)}
-                      >
-                        View Details
-                      </button>
                     </div>
-                  ))
+                    <button
+                      className="btn-success text-white px-4 py-2 rounded-md"
+                      onClick={() => handleViewDetails(category._id, toy.sub_id)}
+                    >
+                      View Details
+                    </button>
+                  </div>
                 ))}
               </div>
             </TabPanel>

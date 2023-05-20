@@ -3,11 +3,11 @@ import Main from "../Layout/Main";
 import Home from "../Pages/Home/Home/Home";
 import ErrorPage from "../ErrorPage";
 import Blogs from "../Pages/Blogs/Blogs";
-import AllToys from "../Pages/allToys/AllToys";
 import AddToy from "../Pages/AddToy/AddToy";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
 import ViewDetails from "../Pages/Home/ViewDetails/ViewDetails";
+import AllToys from "../Pages/AllToys/AllToys";
 
 const router = createBrowserRouter([
     {
@@ -26,6 +26,7 @@ const router = createBrowserRouter([
             {
                 path: 'alltoys',
                 element: <AllToys />
+                // loader: () => fetch('allToy.json')
             },
             {
                 path: 'addatoy',
@@ -40,9 +41,9 @@ const router = createBrowserRouter([
                 element: <SignUp />
             },
             {
-                path: 'viewdetails/:id',
+                path: 'viewdetails/:id/:sub_id',
                 element: <ViewDetails />,
-                loader: ({params}) => fetch(`toysData.json/${params.id}`)
+                loader: ({params}) => fetch(`http://localhost:5000/categories/${params.id}/${params.sub_id}`)
             },
         ]
     },

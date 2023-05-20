@@ -1,0 +1,223 @@
+[
+    {
+      "sellerName": "John Doe",
+      "toyName": "Teddy Bear",
+      "subCategory": "Plush Toys",
+      "price": 19.99,
+      "availableQuantity": 10,
+      "details": "This adorable teddy bear is made with soft, high-quality materials.",
+      "manufacturer": "ABC Toys",
+      "countryOfOrigin": "United States"
+    },
+    {
+      "sellerName": "Jane Smith",
+      "toyName": "LEGO City Police Station",
+      "subCategory": "Building Blocks",
+      "price": 59.99,
+      "availableQuantity": 5,
+      "details": "Build your own LEGO City Police Station and protect the city from criminals.",
+      "manufacturer": "The LEGO Group",
+      "countryOfOrigin": "Denmark"
+    },
+    {
+      "sellerName": "David Johnson",
+      "toyName": "Barbie Dreamhouse",
+      "subCategory": "Dolls",
+      "price": 149.99,
+      "availableQuantity": 2,
+      "details": "Experience the luxurious life with the Barbie Dreamhouse.",
+      "manufacturer": "Mattel",
+      "countryOfOrigin": "United States"
+    },
+    {
+      "sellerName": "Emily Wilson",
+      "toyName": "Remote Control Car",
+      "subCategory": "RC Vehicles",
+      "price": 39.99,
+      "availableQuantity": 8,
+      "details": "Take control and race with this high-speed remote control car.",
+      "manufacturer": "SpeedyRC",
+      "countryOfOrigin": "China"
+    },
+    {
+      "sellerName": "Michael Brown",
+      "toyName": "Play-Doh Fun Factory",
+      "subCategory": "Art & Craft",
+      "price": 12.99,
+      "availableQuantity": 15,
+      "details": "Unleash your creativity with the Play-Doh Fun Factory set.",
+      "manufacturer": "Hasbro",
+      "countryOfOrigin": "United States"
+    },
+    {
+      "sellerName": "Sarah Wilson",
+      "toyName": "Nerf N-Strike Elite Disruptor",
+      "subCategory": "Outdoor Play",
+      "price": 24.99,
+      "availableQuantity": 6,
+      "details": "Get ready for action-packed fun with the Nerf N-Strike Elite Disruptor blaster.",
+      "manufacturer": "Hasbro",
+      "countryOfOrigin": "United States"
+    },
+    {
+      "sellerName": "Robert Davis",
+      "toyName": "Hot Wheels Track Builder System",
+      "subCategory": "Vehicles",
+      "price": 29.99,
+      "availableQuantity": 3,
+      "details": "Create your own thrilling Hot Wheels tracks and race with your favorite cars.",
+      "manufacturer": "Mattel",
+      "countryOfOrigin": "United States"
+    },
+    {
+      "sellerName": "Olivia Johnson",
+      "toyName": "Fisher-Price Baby Bouncer",
+      "subCategory": "Baby & Toddler",
+      "price": 49.99,
+      "availableQuantity": 4,
+      "details": "Keep your baby entertained and comfortable with the Fisher-Price Baby Bouncer.",
+      "manufacturer": "Fisher-Price",
+      "countryOfOrigin": "United States"
+    },
+    {
+      "sellerName": "William Thompson",
+      "toyName": "Paw Patrol My Size Lookout Tower",
+      "subCategory": "Action Figures",
+      "price": 79.99,
+      "availableQuantity": 1,
+      "details": "Join the Paw Patrol pups on exciting rescue missions with the My Size Lookout Tower.",
+      "manufacturer": "Spin Master",
+      "countryOfOrigin": "Canada"
+    },
+    {
+      "sellerName": "Ava Wilson",
+      "toyName": "Crayola Inspiration Art Case",
+      "subCategory": "Art & Craft",
+      "price": 19.99,
+      "availableQuantity": 9,
+      "details": "Unleash your artistic skills with the Crayola Inspiration Art Case.",
+      "manufacturer": "Crayola",
+      "countryOfOrigin": "United States"
+    },
+    {
+      "sellerName": "James Anderson",
+      "toyName": "Transformers Optimus Prime Action Figure",
+      "subCategory": "Action Figures",
+      "price": 34.99,
+      "availableQuantity": 7,
+      "details": "Experience the epic battles with the Transformers Optimus Prime Action Figure.",
+      "manufacturer": "Hasbro",
+      "countryOfOrigin": "United States"
+    },
+    {
+      "sellerName": "Sophia Davis",
+      "toyName": "Baby Einstein Take Along Tunes Musical Toy",
+      "subCategory": "Baby & Toddler",
+      "price": 14.99,
+      "availableQuantity": 12,
+      "details": "Introduce your baby to music with the Baby Einstein Take Along Tunes.",
+      "manufacturer": "Baby Einstein",
+      "countryOfOrigin": "United States"
+    },
+    {
+      "sellerName": "Benjamin Harris",
+      "toyName": "Marvel Avengers Titan Hero Series Action Figures",
+      "subCategory": "Action Figures",
+      "price": 19.99,
+      "availableQuantity": 20,
+      "details": "Bring the action and adventure of the Marvel Avengers with the Titan Hero Series.",
+      "manufacturer": "Hasbro",
+      "countryOfOrigin": "United States"
+    },
+    {
+      "sellerName": "Mia Johnson",
+      "toyName": "Funko Pop! Harry Potter Vinyl Figure",
+      "subCategory": "Collectibles",
+      "price": 9.99,
+      "availableQuantity": 18,
+      "details": "Add the magical world of Harry Potter to your collection with Funko Pop! Vinyl Figures.",
+      "manufacturer": "Funko",
+      "countryOfOrigin": "United States"
+    },
+    {
+      "sellerName": "Ethan Wilson",
+      "toyName": "Nintendo Switch Console",
+      "subCategory": "Electronics",
+      "price": 299.99,
+      "availableQuantity": 2,
+      "details": "Experience gaming on the go with the versatile Nintendo Switch console.",
+      "manufacturer": "Nintendo",
+      "countryOfOrigin": "Japan"
+    },
+    {
+      "sellerName": "Amelia Thompson",
+      "toyName": "Melissa & Doug Wooden Building Blocks Set",
+      "subCategory": "Building Blocks",
+      "price": 24.99,
+      "availableQuantity": 6,
+      "details": "Build, stack, and create with the Melissa & Doug Wooden Building Blocks Set.",
+      "manufacturer": "Melissa & Doug",
+      "countryOfOrigin": "United States"
+    },
+    {
+      "sellerName": "Daniel Martin",
+      "toyName": "Disney Princess Dress Up Trunk",
+      "subCategory": "Dress-Up",
+      "price": 29.99,
+      "availableQuantity": 3,
+      "details": "Let your little one dress up as their favorite Disney Princess with this dress-up trunk.",
+      "manufacturer": "Disney",
+      "countryOfOrigin": "United States"
+    },
+    {
+      "sellerName": "Harper Anderson",
+      "toyName": "Thomas & Friends Wooden Railway Set",
+      "subCategory": "Vehicles",
+      "price": 39.99,
+      "availableQuantity": 8,
+      "details": "Create your own railway adventures with the Thomas & Friends Wooden Railway Set.",
+      "manufacturer": "Fisher-Price",
+      "countryOfOrigin": "China"
+    },
+    {
+      "sellerName": "Alexander Harris",
+      "toyName": "LEGO Star Wars Millennium Falcon",
+      "subCategory": "Building Blocks",
+      "price": 149.99,
+      "availableQuantity": 2,
+      "details": "Embark on a galactic adventure with the iconic LEGO Star Wars Millennium Falcon.",
+      "manufacturer": "The LEGO Group",
+      "countryOfOrigin": "Denmark"
+    },
+    {
+      "sellerName": "Victoria Davis",
+      "toyName": "Hot Wheels Super Ultimate Garage Playset",
+      "subCategory": "Vehicles",
+      "price": 129.99,
+      "availableQuantity": 1,
+      "details": "Race, park, and explore the Hot Wheels Super Ultimate Garage Playset.",
+      "manufacturer": "Mattel",
+      "countryOfOrigin": "China"
+    },
+    {
+      "sellerName": "Liam Thompson",
+      "toyName": "Marvel Spider-Man Titan Hero Series Figure",
+      "subCategory": "Action Figures",
+      "price": 14.99,
+      "availableQuantity": 10,
+      "details": "Join Spider-Man on thrilling adventures with the Titan Hero Series Figure.",
+      "manufacturer": "Hasbro",
+      "countryOfOrigin": "United States"
+    },
+    {
+      "sellerName": "Charlotte Wilson",
+      "toyName": "VTech Smart Shots Sports Center",
+      "subCategory": "Baby & Toddler",
+      "price": 39.99,
+      "availableQuantity": 4,
+      "details": "Engage in active play and learn with the VTech Smart Shots Sports Center.",
+      "manufacturer": "VTech",
+      "countryOfOrigin": "China"
+    }
+  ]
+  

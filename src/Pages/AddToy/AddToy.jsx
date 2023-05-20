@@ -1,141 +1,160 @@
-import { useState } from 'react';
+import { useContext } from 'react';
+import { AuthContext } from '../../Providers/AuthProvider';
 
 const AddToy = () => {
-  const [toyData, setToyData] = useState({
-    pictureUrl: '',
-    name: '',
-    sellerName: '', // Assuming this is retrieved from the logged-in user
-    sellerEmail: '', // Assuming this is retrieved from the logged-in user
-    subCategory: '',
-    price: 0,
-    rating: 0,
-    quantity: 0,
-    description: '',
-  });
+  const { user } = useContext(AuthContext);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setToyData((prevData) => ({ ...prevData, [name]: value }));
-  };
+  const handleSubmit = event =>{
+    event.preventDefault();
+    const form = event.target;
+    const pictureUrl = form.pictureUrl.value;
+    const name = form.name.value;
+    const sellerName = form.sellerName.value;
+    const email = form.email.value;
+    const subCategory = form.subCategory.value;
+    const price = form.price.value;
+    const description = form.description.value;
+    const rating = form.rating.value;
+    const quantity = form.quantity.value;
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission logic here
-    console.log(toyData); // Example: Log toyData to the console
-    // Reset the form fields
-    setToyData({
-      pictureUrl: '',
-      name: '',
-      sellerName: '',
-      sellerEmail: '',
-      subCategory: '',
-      price: 0,
-      rating: 0,
-      quantity: 0,
-      description: '',
-    });
-  };
+    const add = {
+      pictureUrl,
+      name,
+      sellerName,
+      email,
+      subCategory,
+      price,
+      description,
+      rating,
+      quantity
+    } 
+    fetch('http://localhost:5000/addtoy', {
+      method: 'POST',
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify(add)
+    })
+    .then((res) => res.json())
+    .then((result) => {
+      console.log(result);
+    })
+
+  }
 
   return (
     <div className="container mx-auto py-8">
-      <h2 className="text-3xl font-semibold text-gray-800 mb-6">
+      <h2 className="text-3xl font-semibold text-gray-200 mb-6">
         Add A Toy
       </h2>
 
       <form onSubmit={handleSubmit} className="max-w-md mx-auto">
         <div className="mb-4">
-          <label className="block mb-2 text-sm font-medium text-gray-700" htmlFor="pictureUrl">
+          <label className="block mb-2 text-sm font-medium text-gray-200" htmlFor="pictureUrl">
             Picture URL
           </label>
           <input
             type="text"
             id="pictureUrl"
             name="pictureUrl"
-            value={toyData.pictureUrl}
-            onChange={handleInputChange}
             className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-500"
             required
           />
         </div>
         <div className="mb-4">
-          <label className="block mb-2 text-sm font-medium text-gray-700" htmlFor="name">
-            Name
+          <label className="block mb-2 text-sm font-medium text-gray-200" htmlFor="name">
+            Toy Name
           </label>
           <input
             type="text"
             id="name"
             name="name"
-            value={toyData.name}
-            onChange={handleInputChange}
             className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-500"
             required
           />
         </div>
+
         <div className="mb-4">
-          <label className="block mb-2 text-sm font-medium text-gray-700" htmlFor="subCategory">
+          <label className="block mb-2 text-sm font-medium text-gray-200" htmlFor="name">
+            Seller Name
+          </label>
+          <input
+            type="text"
+            id="sellerName"
+            name="sellerName"
+            value={user?.displayName}
+            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-500"
+            required
+          />
+        </div>
+
+        <div className="mb-4">
+          <label className="block mb-2 text-sm font-medium text-gray-200" htmlFor="name">
+            Seller Email
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={user?.email}
+            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-500"
+            required
+          />
+        </div>
+
+        <div className="mb-4">
+          <label className="block mb-2 text-sm font-medium text-gray-200" htmlFor="subCategory">
             Sub-category
           </label>
           <input
             type="text"
             id="subCategory"
             name="subCategory"
-            value={toyData.subCategory}
-            onChange={handleInputChange}
             className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-500"
             required
           />
         </div>
         <div className="mb-4">
-          <label className="block mb-2 text-sm font-medium text-gray-700" htmlFor="price">
+          <label className="block mb-2 text-sm font-medium text-gray-200" htmlFor="price">
             Price
           </label>
           <input
             type="number"
             id="price"
             name="price"
-            value={toyData.price}
-            onChange={handleInputChange}
             className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-500"
             required
           />
         </div>
         <div className="mb-4">
-          <label className="block mb-2 text-sm font-medium text-gray-700" htmlFor="rating">
+          <label className="block mb-2 text-sm font-medium text-gray-200" htmlFor="rating">
             Rating
           </label>
           <input
             type="number"
             id="rating"
             name="rating"
-            value={toyData.rating}
-            onChange={handleInputChange}
             className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-500"
             required
           />
         </div>
         <div className="mb-4">
-          <label className="block mb-2 text-sm font-medium text-gray-700" htmlFor="quantity">
+          <label className="block mb-2 text-sm font-medium text-gray-200" htmlFor="quantity">
             Available Quantity
           </label>
           <input
             type="number"
             id="quantity"
             name="quantity"
-            value={toyData.quantity}
-            onChange={handleInputChange}
             className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-500"
             required
           />
         </div>
         <div className="mb-4">
-          <label className="block mb-2 text-sm font-medium text-gray-700" htmlFor="description">
+          <label className="block mb-2 text-sm font-medium text-gray-200" htmlFor="description">
             Detail Description
           </label>
           <textarea
             id="description"
             name="description"
-            value={toyData.description}
-            onChange={handleInputChange}
             className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-500"
             required
           ></textarea>

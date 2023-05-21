@@ -30,13 +30,16 @@ const AddToy = () => {
     } 
     fetch('http://localhost:5000/addtoy', {
       method: 'POST',
-      headers: { 'Content-type': 'application/json' },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(add)
     })
     .then((res) => res.json())
-    .then((result) => {
-      console.log(result);
+    .then((data) => {
+      console.log(data);
     })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
 
   }
 
@@ -95,6 +98,7 @@ const AddToy = () => {
             id="email"
             name="email"
             value={user?.email}
+            defaultValue={user?.email}
             className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-500"
             required
           />

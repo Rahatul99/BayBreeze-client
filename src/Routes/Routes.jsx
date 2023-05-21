@@ -8,6 +8,7 @@ import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
 import ViewDetails from "../Pages/Home/ViewDetails/ViewDetails";
 import AllToys from "../Pages/AllToys/AllToys";
+import MyToys from "../Pages/MyToys/MyToys";
 
 const router = createBrowserRouter([
     {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
                 element: <ViewDetails />,
                 loader: ({params}) => fetch(`http://localhost:5000/categories/${params.id}/${params.sub_id}`)
             },
+            {
+                path: 'myToys',
+                element: <MyToys />
+            }
         ]
     },
 ]);

@@ -14,20 +14,98 @@ const MyToys = () => {
       .then((data) => setToyData(data));
   }, [user, modified]);
 
-  const handleUpdate = (formValues) => {
-    fetch(`https://toy-marketplace-server-rouge.vercel.app/updateToy/${formValues?.id}`, {
-      method: 'PUT',
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formValues),
-    })
-    .then((res) => res.json())
-    .then((result) => {
-      if(result.modifiedCount > 0){
-        setModified(!modified)
+  // const handleUpdate = (formValues) => {
+  //   fetch(`https://toy-marketplace-server-rouge.vercel.app/updateToy/${formValues?.id}`, {
+  //     method: 'PUT',
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify(formValues),
+  //   })
+  //   .then((res) => res.json())
+  //   .then((result) => {
+  //     if(result.modifiedCount > 0){
+  //       setModified(!modified)
+  //     }
+  //   });
+  //   console.log("Updated form values:", formValues);
+  // };
+
+
+  // const handleUpdate = async (formValues) => {
+  //   try {
+  //     const response = await fetch(`https://toy-marketplace-server-rouge.vercel.app/updateToy/${formValues?.id}`, {
+  //       method: 'PUT',
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify(formValues),
+  //     });
+  //     const result = await response.json();
+  //     if (result.modifiedCount > 0) {
+  //       setModified(!modified);
+  //     }
+  //   } catch (error) {
+  //     console.error('Error updating toy:', error);
+  //   }
+  // };
+
+  // const handleUpdate = async (formValues) => {
+  //   try {
+  //     const response = await fetch(`https://toy-marketplace-server-rouge.vercel.app/updateToy/${formValues?.id}`, {
+  //       method: 'PUT',
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify(formValues),
+  //     });
+  //     const result = await response.json();
+  //     if (result.modifiedCount > 0) {
+  //       setModified(!modified);
+  //       Swal.fire({
+  //         icon: 'success',
+  //         title: 'Success',
+  //         text: 'Toy updated successfully!',
+  //       });
+  //     }
+  //   } catch (error) {
+  //     console.error('Error updating toy:', error);
+  //     Swal.fire({
+  //       icon: 'error',
+  //       title: 'Error',
+  //       text: 'An error occurred while updating the toy.',
+  //     });
+  //   }
+  // };
+
+
+
+
+
+  //**everything was perfect until i host server on vercel,,,after hosting server on vercel update is not working please notice all the codes above that i tried to fix after getting issues **/
+
+  const handleUpdate = async (formValues) => {
+    try {
+      const { id, price, quantity, description } = formValues;
+      const response = await fetch(`https://toy-marketplace-server-rouge.vercel.app/updateToy/${id}`, {
+        method: 'PUT',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ price, quantity, description }),
+      });
+      const result = await response.json();
+      if (result.modifiedCount > 0) {
+        setModified(!modified);
+        Swal.fire({
+          icon: 'success',
+          title: 'Success',
+          text: 'Toy updated successfully!',
+        });
       }
-    });
-    console.log("Updated form values:", formValues);
+    } catch (error) {
+      console.error('Error updating toy:', error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'An error occurred while updating the toy.',
+      });
+    }
   };
+  
+  
 
   const handleDelete = (id) => {
     const swalWithBootstrapButtons = Swal.mixin({

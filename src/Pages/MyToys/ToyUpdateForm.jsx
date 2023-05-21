@@ -16,11 +16,18 @@ const ToyUpdateForm = ({ toy, handleModalClose, handleUpdate }) => {
         }));
     };
 
-    const handleSubmit = (event) => {
+    // const handleSubmit = (event) => {
+    //     event.preventDefault();
+    //     handleUpdate(formValues);
+    //     handleModalClose();
+    // };
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        handleUpdate(formValues);
+        await handleUpdate(formValues);
         handleModalClose();
-    };
+      };
+    
     const handleCancel = () => {
         handleModalClose();
     };

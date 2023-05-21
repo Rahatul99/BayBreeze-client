@@ -9,13 +9,13 @@ const MyToys = () => {
   const [ modified, setModified ] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/mytoys/${user?.email}`)
+    fetch(`https://toy-marketplace-server-rouge.vercel.app/mytoys/${user?.email}`)
       .then((response) => response.json())
       .then((data) => setToyData(data));
   }, [user, modified]);
 
   const handleUpdate = (formValues) => {
-    fetch(`http://localhost:5000/updateToy/${formValues?.id}`, {
+    fetch(`https://toy-marketplace-server-rouge.vercel.app/updateToy/${formValues?.id}`, {
       method: 'PUT',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formValues),
@@ -48,7 +48,7 @@ const MyToys = () => {
       reverseButtons: true
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/allToys/${id}`, {
+        fetch(`https://toy-marketplace-server-rouge.vercel.app/allToys/${id}`, {
           method: 'DELETE'
         })
           .then(res => res.json())

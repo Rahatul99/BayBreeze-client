@@ -2,8 +2,6 @@ import { useLoaderData } from "react-router-dom";
 
 const ViewToyDetail = () => {
   const toy = useLoaderData();
-  console.log(toy);
-
   return (
     <div>
       {toy && (

@@ -28,7 +28,7 @@ const AddToy = () => {
       rating,
       quantity
     } 
-    fetch('http://localhost:5000/addtoy', {
+    fetch('https://toy-marketplace-server-rouge.vercel.app/addtoy', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(add)

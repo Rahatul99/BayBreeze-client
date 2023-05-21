@@ -15,7 +15,7 @@ const AllToys = () => {
   const pageNumbers = [...Array(totalPages).keys()];
 
   // useEffect(() => {
-  //   fetch('http://localhost:5000/allToys')
+  //   fetch('https://toy-marketplace-server-rouge.vercel.app/allToys')
   //     .then(response => response.json())
   //     .then(data => setToyData(data))
   //     .catch(error => console.error(error));
@@ -23,7 +23,7 @@ const AllToys = () => {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch(`http://localhost:5000/allToys?pages=${currentPage}&limit=${toysPerPage}`);
+      const response = await fetch(`https://toy-marketplace-server-rouge.vercel.app/allToys?pages=${currentPage}&limit=${toysPerPage}`);
       const data = await response.json();
       setToyData(data);
     }

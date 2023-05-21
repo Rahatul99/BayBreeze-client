@@ -26,7 +26,7 @@ const ShopByCategorySection = () => {
   }, []);
 
   useEffect(() => {
-    fetch('http://localhost:5000/categories')
+    fetch('https://toy-marketplace-server-rouge.vercel.app/categories')
       .then(response => response.json())
       .then(data => setToysData(data))
       .catch(error => console.error(error));

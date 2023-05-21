@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import './AllToys.css';
 
 const AllToys = () => {
@@ -79,9 +79,11 @@ const AllToys = () => {
               <td className="py-2 px-4 border-b">${toy.price}</td>
               <td className="py-2 px-4 border-b">{toy.quantity}</td>
               <td className="py-2 px-4 border-b">
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
-                  View Details
-                </button>
+                <Link to={`/viewtoydetail/${toy._id}`}>
+                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+                    View Details
+                  </button>
+                </Link>
               </td>
             </tr>
           ))}

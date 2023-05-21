@@ -98,5 +98,3 @@ const ToyUpdateForm = ({ toy, handleModalClose, handleUpdate }) => {
 
 export default ToyUpdateForm;
 
-
-

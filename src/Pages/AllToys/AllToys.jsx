@@ -20,7 +20,7 @@ const AllToys = () => {
   //     .then(data => setToyData(data))
   //     .catch(error => console.error(error));
   // }, []);
-
+ 
   useEffect(() => {
     async function fetchData() {
       const response = await fetch(`https://toy-marketplace-server-rouge.vercel.app/allToys?pages=${currentPage}&limit=${toysPerPage}`);

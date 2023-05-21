@@ -9,6 +9,7 @@ import SignUp from "../Pages/SignUp/SignUp";
 import ViewDetails from "../Pages/Home/ViewDetails/ViewDetails";
 import AllToys from "../Pages/AllToys/AllToys";
 import MyToys from "../Pages/MyToys/MyToys";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -26,12 +27,12 @@ const router = createBrowserRouter([
             },
             {
                 path: 'alltoys',
-                element: <AllToys />
-                // loader: () => fetch('allToy.json')
+                element: <AllToys />,
+                loader: () => fetch('http://localhost:5000/totalToys')
             },
             {
                 path: 'addatoy',
-                element: <AddToy />
+                element:<PrivateRoute> <AddToy /> </PrivateRoute>
             },
             {
                 path: 'login',
@@ -43,12 +44,12 @@ const router = createBrowserRouter([
             },
             {
                 path: 'viewdetails/:id/:sub_id',
-                element: <ViewDetails />,
+                element: <PrivateRoute><ViewDetails /></PrivateRoute>,
                 loader: ({params}) => fetch(`http://localhost:5000/categories/${params.id}/${params.sub_id}`)
             },
             {
                 path: 'myToys',
-                element: <MyToys />
+                element:<PrivateRoute> <MyToys /> </PrivateRoute>
             }
         ]
     },

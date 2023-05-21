@@ -1,15 +1,34 @@
 import { useEffect, useState } from "react";
+import { useLoaderData } from "react-router-dom";
+import './AllToys.css';
 
 const AllToys = () => {
   const [toyData, setToyData] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [currentPage, setCurrentPage] = useState(0);
+  const [toysPerPage, setToysPerPage] = useState(20)
+  const { totalToys } = useLoaderData();
+
+  // const toysPerPage = 20;
+  const totalPages = Math.ceil(totalToys / toysPerPage);
+
+  const pageNumbers = [...Array(totalPages).keys()];
+
+  // useEffect(() => {
+  //   fetch('http://localhost:5000/allToys')
+  //     .then(response => response.json())
+  //     .then(data => setToyData(data))
+  //     .catch(error => console.error(error));
+  // }, []);
 
   useEffect(() => {
-    fetch('http://localhost:5000/allToys')
-      .then(response => response.json())
-      .then(data => setToyData(data))
-      .catch(error => console.error(error));
-  }, []);
+    async function fetchData() {
+      const response = await fetch(`http://localhost:5000/allToys?pages=${currentPage}&limit=${toysPerPage}`);
+      const data = await response.json();
+      setToyData(data);
+    }
+    fetchData();
+  },[currentPage, toysPerPage]);
 
   const handleSearchInputChange = (e) => {
     setSearchQuery(e.target.value);
@@ -19,8 +38,15 @@ const AllToys = () => {
     toy.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  const options = [5, 10, 20];
+  function handleSelectChange(event){
+    setToysPerPage(parseInt(event.target.value));
+    setCurrentPage(0);
+  }
+
   return (
-    <div className="container mx-auto py-8">
+    <>
+        <div className="container mx-auto py-8">
       <h2 className="text-3xl font-semibold text-gray-300 mb-6 text-center">
         All Toys
       </h2>
@@ -62,6 +88,24 @@ const AllToys = () => {
         </tbody>
       </table>
     </div>
+    
+    <div className="pagination">
+            {
+              pageNumbers.map(number => <button className={currentPage === number ? 'selected' : 'btn'} key={number}
+              onClick={() => setCurrentPage(number)}
+              >{number}</button> )
+            }
+            <select value={toysPerPage} onChange={handleSelectChange}>
+              {options.map(option => (
+                <option key={option} value={option}> 
+                  {option}
+                </option>
+              ))
+
+              }
+            </select>
+    </div>
+    </>
   );
 };
 

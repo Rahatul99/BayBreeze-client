@@ -1,36 +1,24 @@
-// const Blogs = () => {
-//     return (
-//         <div>
-            
-//         </div>
-//     );
-// };
-
-// export default Blogs;
-
-
-
 const Blogs = () => {
   const faqData = [
     {
       question: 'What is an access token and refresh token? How do they work and where should we store them on the client-side?',
       answer:
-        '',
+        'An access token is a credential that is used to authenticate and authorize a user when accessing protected resources, such as an API. It is typically issued by an authentication server after the user successfully logs in and provides their credentials. The access token contains information about the user and their permissions, and it has a limited lifespan A refresh token, on the other hand, is a long-lived credential that is used to obtain a new access token once the current one expires. It is typically issued alongside the access token and is securely stored on the client-side When a user makes a request to a protected resource, they include the access token in the request headers. The server then verifies the access token to ensure the user has the necessary permissions to access the requested resource.',
     },
     {
       question: 'Compare SQL and NoSQL databases?',
       answer:
-        '',
+        'SQL databases are ideal for applications with structured data and complex relationships, while NoSQL databases excel in handling unstructured or rapidly changing data at scale, prioritizing scalability and performance over strict consistency. The choice between SQL and NoSQL depends on the specific requirements and characteristics of application.',
     },
     {
       question: 'What is express js? What is Nest JS?',
       answer:
-        'Once your order is shipped, you will receive a tracking number via email. You can use that tracking number to track your order on our website.',
+        'Express.js is a minimalist web application framework for Node.js. It provides a simple and flexible set of features for building web applications and APIs. Express.js allows you to handle HTTP requests, define routes, handle middleware, and render views. It is lightweight and unopinionated, giving developers the freedom to structure their applications as they see fit. Express.js is widely used and has a large ecosystem of middleware and extensions, making it a popular choice for building web applications in Node.js.',
     },
     {
-      question:'What is MongoDB aggregate and how does it work (google it)?',
+      question:'What is MongoDB aggregate and how does it work?',
       answer:
-      ''
+      'In MongoDB, the aggregate operation is used to perform advanced data processing and analysis on the documents in a collection. It allows you to perform computations, transformations, and aggregations on the data, similar to the SQL "GROUP BY" or "JOIN" operations The aggregate operation in MongoDB works by using a pipeline of stages, where each stage performs a specific operation on the input documents and passes the results to the next stage. Each stage can modify, filter, group, sort, or project the documents in some way. The pipeline stages are executed in the order they are specified, allowing you to build complex data processing workflows.'
     }
   ];
 

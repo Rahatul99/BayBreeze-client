@@ -87,8 +87,6 @@ const MyToys = () => {
       }
     });
   };
-  
-
   const handleModalClose = (toyId) => {
     const modalCheckbox = document.getElementById(`my-modal-${toyId}`);
     if (modalCheckbox) {

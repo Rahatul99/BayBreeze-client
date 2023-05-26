@@ -6,77 +6,15 @@ import Swal from 'sweetalert2';
 const MyToys = () => {
   const { user } = useContext(AuthContext);
   const [toyData, setToyData] = useState([]);
-  const [ modified, setModified ] = useState(false);
+  // const [ modified, setModified ] = useState(false);
 
   useEffect(() => {
     fetch(`https://toy-marketplace-server-rouge.vercel.app/mytoys/${user?.email}`)
       .then((response) => response.json())
       .then((data) => setToyData(data));
-  }, [user, modified]);
-
-  // const handleUpdate = (formValues) => {
-  //   fetch(`https://toy-marketplace-server-rouge.vercel.app/updateToy/${formValues?.id}`, {
-  //     method: 'PUT',
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify(formValues),
-  //   })
-  //   .then((res) => res.json())
-  //   .then((result) => {
-  //     if(result.modifiedCount > 0){
-  //       setModified(!modified)
-  //     }
-  //   });
-  //   console.log("Updated form values:", formValues);
-  // };
+  }, [user, toyData]);
 
 
-  // const handleUpdate = async (formValues) => {
-  //   try {
-  //     const response = await fetch(`https://toy-marketplace-server-rouge.vercel.app/updateToy/${formValues?.id}`, {
-  //       method: 'PUT',
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify(formValues),
-  //     });
-  //     const result = await response.json();
-  //     if (result.modifiedCount > 0) {
-  //       setModified(!modified);
-  //     }
-  //   } catch (error) {
-  //     console.error('Error updating toy:', error);
-  //   }
-  // };
-
-  // const handleUpdate = async (formValues) => {
-  //   try {
-  //     const response = await fetch(`https://toy-marketplace-server-rouge.vercel.app/updateToy/${formValues?.id}`, {
-  //       method: 'PUT',
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify(formValues),
-  //     });
-  //     const result = await response.json();
-  //     if (result.modifiedCount > 0) {
-  //       setModified(!modified);
-  //       Swal.fire({
-  //         icon: 'success',
-  //         title: 'Success',
-  //         text: 'Toy updated successfully!',
-  //       });
-  //     }
-  //   } catch (error) {
-  //     console.error('Error updating toy:', error);
-  //     Swal.fire({
-  //       icon: 'error',
-  //       title: 'Error',
-  //       text: 'An error occurred while updating the toy.',
-  //     });
-  //   }
-  // };
-
-
-
-
-
-  //**everything was perfect until i host server on vercel,,,after hosting server on vercel update is not working please notice all the codes above that i tried to fix after getting issues **/
 
   const handleUpdate = async (formValues) => {
     try {
@@ -88,13 +26,20 @@ const MyToys = () => {
       });
       const result = await response.json();
       if (result.modifiedCount > 0) {
-        setModified(!modified);
-        Swal.fire({
-          icon: 'success',
-          title: 'Success',
-          text: 'Toy updated successfully!',
+        // Update toyData state with the updated toy
+        const updatedToyData = toyData.map((toy) => {
+          if (toy._id === id) {
+            return { ...toy, price, quantity, description };
+          }
+          return toy;
         });
+        setToyData(updatedToyData);
       }
+      Swal.fire({
+        icon: 'success',
+        title: 'Success',
+        text: 'Toy updated successfully!',
+      });
     } catch (error) {
       console.error('Error updating toy:', error);
       Swal.fire({
@@ -104,8 +49,7 @@ const MyToys = () => {
       });
     }
   };
-  
-  
+
 
   const handleDelete = (id) => {
     const swalWithBootstrapButtons = Swal.mixin({
@@ -115,7 +59,7 @@ const MyToys = () => {
       },
       buttonsStyling: false
     });
-  
+
     swalWithBootstrapButtons.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -178,6 +122,8 @@ const MyToys = () => {
         My Toys
       </h2>
 
+      
+
       <table className="min-w-full bg-white border border-gray-300">
         <thead>
           <tr>
@@ -214,7 +160,8 @@ const MyToys = () => {
                     <ToyUpdateForm
                       toy={toy}
                       handleUpdate={handleUpdate}
-                      handleModalClose={() => handleModalClose(toy._id)}
+                      handleModalClose={() => handleModalClose(toy._id)
+                      }
                     />
                   </div>
                 </div>
@@ -234,3 +181,4 @@ const MyToys = () => {
 };
 
 export default MyToys;
+

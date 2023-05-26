@@ -15,19 +15,12 @@ const ToyUpdateForm = ({ toy, handleModalClose, handleUpdate }) => {
             [name]: value
         }));
     };
-
-    // const handleSubmit = (event) => {
-    //     event.preventDefault();
-    //     handleUpdate(formValues);
-    //     handleModalClose();
-    // };
-
     const handleSubmit = async (event) => {
         event.preventDefault();
-        await handleUpdate(formValues);
+        // await handleUpdate(formValues);
         handleModalClose();
       };
-    
+
     const handleCancel = () => {
         handleModalClose();
     };
@@ -90,7 +83,7 @@ const ToyUpdateForm = ({ toy, handleModalClose, handleUpdate }) => {
                 />
             </div>
             <div className="flex items-end justify-evenly">
-                <button type="submit" className="btn bg-blue-500 hover:bg-blue-700 text-white font-semibold">
+                <button type="submit" className="btn bg-blue-500 hover:bg-blue-700 text-white font-semibold" onClick={() => handleUpdate(formValues)}>
                     Confirm
                 </button>
                 <div className="modal-action">

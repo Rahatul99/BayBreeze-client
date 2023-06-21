@@ -3,9 +3,11 @@ import Logo from '../../../assets/Logo.svg'
 import { useContext } from "react";
 import { AuthContext } from "../../../Providers/AuthProvider";
 
+
 const Navbar = () => {
     const location = useLocation();
     const { user, logOut } = useContext(AuthContext);
+
     console.log(user);
     const handleLogOut = () => {
         logOut()

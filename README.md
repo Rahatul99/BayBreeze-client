@@ -20,7 +20,7 @@ Visit [BayBreeze Playthings](https://toys-marketplace-a3c46.web.app/)
 ### Shop by Category
 
 Discover an extensive collection of car toys, ranging from Push Cars and Police Cars to Remote Control Cars.
-
+ 
 ### Firebase Authentication and Social Login
 
 Feel secure as you register and log in to BayBreeze Playthings using Firebase Authentication. Benefit from Firebase's robust authentication system, handling user registration and login processes seamlessly. Enjoy the convenience of logging in with your Google account.
